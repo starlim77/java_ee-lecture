@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	color:red;
+	font-size:8pt;
+	font-weight:bold;
+}
+</style>
+</head>
+<body>
+	<form name="paramForm" method="" action="http://localhost:8080/testServlet/ParamServlet">
+		<table border="1" cellspacing="0" cellpadding="10">
+			<tr>
+				<td align="center">이름</td>
+				<td>
+					<input type="text" name="name" id="name" placeholder="이름 입력">
+					<div id="nameDiv"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">나이</td>
+				<td>
+					<input type="text" name="age" id="age" placeholder="나이 입력">
+					<div id="ageDiv"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="보내기" onclick="javascript:check()">
+					<input type="reset" value="취소">
+				</td>
+			</tr>
+		</table>
+	</form>
+<script type="text/javascript">
+function check(){
+	//if(document.paramForm.name.value == "") alert("이름을 입력하세요")
+	//else if(document.paramForm.age.value == "") alert("나이를 입력하세요")
+	
+	//if(document.getElementById("name").value=="") alert("이름을 입력하세요")
+	//else if(document.getElementById("age").value=="") alert("나이를 입력하세요")
+	document.getElementById("nameDiv").innerText="";
+	document.getElementById("ageDiv").innerText="";
+	if(document.getElementById("name").value=="")
+		document.getElementById("nameDiv").innerText="이름을 입력하세요";
+	else if(document.getElementById("age").value=="")
+		document.getElementById("ageDiv").innerText="나이를 입력하세요";
+	else
+		document.paramForm.submit();
+}
+</script>	
+</body>
+</html>
