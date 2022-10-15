@@ -1,6 +1,5 @@
 package guestbook.bean;
 
-import java.security.PublicKey;
 
 public class GuestbookDTO {
 	
@@ -10,14 +9,18 @@ public class GuestbookDTO {
 	private String subject;
 	private String content;
 	
+	private String logtime;
+	
 	public GuestbookDTO(String name, String email, String homepage, String subject, String content) {
 		this.name = name;
 		this.email = email;
 		this.homepage = homepage;
 		this.subject = subject;
-		this.content = content;	
+		this.content = content;
 	}
-
+	
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -38,5 +41,16 @@ public class GuestbookDTO {
 		return content;
 	}
 
-	
+
+
+	public String getLogtime() {
+		return logtime;
+	}
+	public void setLogtime(String logtime) {
+		this.logtime=logtime;
+	}
 }
+
+	
+	
+

@@ -10,7 +10,7 @@ String email = request.getParameter("email");
 String homepage = request.getParameter("homepage");
 String subject = request.getParameter("subject");
 String content = request.getParameter("content");
-if(homepage.equals("http://")) email="";
+if(homepage.equals("http://")) homepage=null;
 
 GuestbookDTO guestbookDTO = new GuestbookDTO(name,email,homepage,subject,content);
 int su = GuestbookDAO.getIntense().guestbookWrite(guestbookDTO);
@@ -27,5 +27,7 @@ if(su==1) writeResult = "작성하신 글을 저장하였습니다.";
 </head>
 <body>
 <%= writeResult %>
+<br>
+<input type="button" value="글 목록" onclick="location.href='guestbookList.jsp'">
 </body>
 </html>

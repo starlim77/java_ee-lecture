@@ -22,6 +22,9 @@ input{
 .content{
 	height:150px;
 }
+.writeContent{
+	width:500px;
+}
 </style>
 </head>
 <body>
@@ -36,7 +39,7 @@ input{
 	<tr>
 		<td class="row1">이메일</td>
 		<td>
-			<input type="text" name="email" placeholder="이메일 입력" >
+			<input type="email" name="email" placeholder="이메일 입력" >
 		</td>
 	</tr>
 	<tr>
@@ -55,7 +58,7 @@ input{
 	<tr>
 		<td class="row1 content">내용</td>
 		<td>
-			<input class="content" type="text" name="content" placeholder="내용 입력" >
+			<textarea class="content writeContent" name="content" placeholder="내용 입력" ></textarea>
 			<div id="contentDiv"></div>
 		</td>
 	</tr>

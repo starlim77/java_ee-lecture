@@ -12,3 +12,5 @@ zipcode varchar2(10),
 addr1 varchar2(100),
 addr2 varchar2(100),
 logtime date);
+
+create sequence seq_guestbook nocycle nocache;
