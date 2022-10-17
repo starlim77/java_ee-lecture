@@ -138,7 +138,6 @@ public class GuestbookDAO {
 		
 		String sql = "select name, email, homepage, subject, content, to_char(logtime, 'YYYY\".\"MM\".\"DD') as logtime from guestbook order by seq desc";
 		
-		int i = 0;
 		getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
