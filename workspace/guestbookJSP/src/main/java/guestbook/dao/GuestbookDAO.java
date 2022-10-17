@@ -86,12 +86,13 @@ public class GuestbookDAO {
 			e.printStackTrace();
 		} 
 		return rs;
+		
+	
 	}
 	
 	
 	
 	
-	//------------- ArrayList 사용
 	
 	
 	public PreparedStatement getPstmt() {
@@ -100,6 +101,7 @@ public class GuestbookDAO {
 	public Connection getConn() {
 		return conn;
 	}
+	//------------- ArrayList 사용
 	
 //	public void guestbookListArray(ArrayList<GuestbookDTO> arrayList) {
 //		
