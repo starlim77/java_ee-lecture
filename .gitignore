@@ -74,5 +74,8 @@ local.properties
 .classpath
 .zip
 .xml
-/lib
-/강의자료
+lib/
+강의자료/
+workspace/Servers/
+workspace/.gitignore
+
