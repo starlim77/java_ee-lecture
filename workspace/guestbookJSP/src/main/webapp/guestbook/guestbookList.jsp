@@ -22,9 +22,8 @@ while(rs.next()){
 	if(homepage==null) homepage="";
 	
 	SimpleDateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd H:m:s");
-	Date logtimeDate = sqlDateFormat.parse(logtime);
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
-	logtime = simpleDateFormat.format(logtimeDate);
+	logtime = simpleDateFormat.format(sqlDateFormat.parse(logtime));
 	
 %>    
 

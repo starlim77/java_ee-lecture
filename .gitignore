@@ -73,6 +73,6 @@ local.properties
 .project
 .classpath
 .zip
+.xml
 /lib
 /강의자료
-

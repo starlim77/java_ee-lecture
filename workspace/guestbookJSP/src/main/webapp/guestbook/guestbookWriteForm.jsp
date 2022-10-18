@@ -24,6 +24,7 @@ input{
 }
 .writeContent{
 	width:500px;
+	/* white-space : normal; */
 }
 </style>
 </head>
@@ -67,7 +68,7 @@ input{
 		<td class="row1" colspan="2">
 			<input class="button" type="button" value="글작성" onclick="checkGuestbookWrite()">
 			<input class="button" type="reset" value="다시 작성">
-			<input class="button" type="button" value="글목록" onclick="location.href='guestbookList.jsp'">
+			<input class="button" type="button" value="글목록" onclick="location.href='guestbookListArray.jsp?pg=1'">
 		</td>
 	</tr>
 </table>

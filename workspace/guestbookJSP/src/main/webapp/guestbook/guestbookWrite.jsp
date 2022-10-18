@@ -26,8 +26,13 @@ if(su==1) writeResult = "작성하신 글을 저장하였습니다.";
 <title>Insert title here</title>
 </head>
 <body>
+<img src="../img/marie.jpeg" width="100" width="100"
+     onclick="location.href='guestbookWriteForm.jsp'" 
+	 style="cursor:pointer">
+<br>
 <%= writeResult %>
 <br>
-<input type="button" value="글 목록" onclick="location.href='guestbookList.jsp'">
+<input type="button" value ="뒤로" onclick="history.back()"> <!-- history.go(-1) -->
+<input type="button" value="글 목록" onclick="location.href='guestbookListArray.jsp?pg=1'">
 </body>
 </html>

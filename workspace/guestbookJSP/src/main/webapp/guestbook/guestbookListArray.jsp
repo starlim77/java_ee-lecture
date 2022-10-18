@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="javax.security.auth.Subject"%>
 <%@page import="guestbook.bean.GuestbookDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -18,14 +20,29 @@ for(int i=0;i<arraylist.size();i++){
 	String subject = arraylist.get(i).getSubject();
 	String content = arraylist.get(i).getContent(); */
 	
-ArrayList<GuestbookDTO> arraylist = GuestbookDAO.getIntense().guestbookListArray();
-for(int i=0;i<arraylist.size();i++){
-	String name = arraylist.get(i).getName();
-	String logtime = arraylist.get(i).getLogtime();
-	String email = arraylist.get(i).getEmail();
-	String homepage = arraylist.get(i).getHomepage();
-	String subject = arraylist.get(i).getSubject();
-	String content = arraylist.get(i).getContent(); 
+//데이터
+int pg = Integer.parseInt(request.getParameter("pg"));
+	
+//페이징 처리 - 1페이지당 3개씩
+int endNum = pg*3;
+int startNum = endNum - 2;
+
+Map<String, Integer> map = new HashMap<String, Integer>();
+map.put("startNum", startNum);
+map.put("endNum", endNum); 
+ArrayList<GuestbookDTO> arraylist = GuestbookDAO.getIntense().guestbookListArray(map); 
+	
+int totalA = GuestbookDAO.getIntense().getTotalA();
+int totalPage = (totalA + 2)/3;
+
+if(arraylist!=null) {
+	for(int i=0;i<arraylist.size();i++){// for(GuestbookDTO guestbookDTO : list)
+		String name = arraylist.get(i).getName();
+		String logtime = arraylist.get(i).getLogtime();
+		String email = arraylist.get(i).getEmail();
+		String homepage = arraylist.get(i).getHomepage();
+		String subject = arraylist.get(i).getSubject();
+		String content = arraylist.get(i).getContent(); 
 	
  %>
 
@@ -44,6 +61,25 @@ for(int i=0;i<arraylist.size();i++){
 }
 .content{
 	height:300px;
+	vertical-align : top;
+}
+#currentPagging{
+	color:red;
+	text-decoration:underline;
+}
+div{
+	text-align:center;
+}
+#paging{
+	color:black;
+	text-decoration:none;
+}
+p{
+	display:block;
+}
+pre{
+ 	white-space: pre-wrap;
+ 	word-break : break-word;
 }
 </style>
 </head>
@@ -68,11 +104,25 @@ for(int i=0;i<arraylist.size();i++){
 		<td colspan="3"><%=subject %></td>
 	</tr>
 	<tr>
-		<td class="content" colspan="4" style="vertical-align : top;"><%=content %></td>
+		<td class="content" colspan="4"><p><pre><%=content %></pre></p></td>
 	</tr>
 </table>
 <hr>
+
+
+<% } 
+}%>
+<!--  페이지 번호  -->
+<div>
+<%
+for(int i=1;i<=totalPage;i++){
+	if(i==pg){%>
+		<span style="border:1px solid green;"><a id = "currentPaging" href="guestbookListArray.jsp?pg=<%= i%>"><%=i %></a></span>
+	<%}else{%>
+		<a id = "paging" href="guestbookListArray.jsp?pg=<%= i%>"><%=i %></a>    <!-- 줄바꿈 white-space , 가운데 정렬 -->
+	<%}%>
+	
+<% }//for%>
+</div>
 </body>
 </html>
-
-<% } %>
