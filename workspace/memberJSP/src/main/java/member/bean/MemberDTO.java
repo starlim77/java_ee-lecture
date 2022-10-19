@@ -1,12 +1,21 @@
 package member.bean;
 
+import lombok.Data;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+//@Data
 @Getter
 @Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class MemberDTO {
-
+	
+	@NonNull
 	private String name;
 	private String id;
 	private String pwd;

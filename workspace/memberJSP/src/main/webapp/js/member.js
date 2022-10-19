@@ -28,11 +28,6 @@ function checkWrite(){
 		else alert("아이디 중복체크 하세요")
 	}
 	
-	if
-	else if 
-	else if (document.writeForm.check.value=="")
-	else  document.writeForm.submit();
-	
 	
 }//checkWrite()
 function checkId(){
@@ -44,6 +39,7 @@ function checkId(){
 		document.getElementById("idDiv").innerHTML="<font color='magenta'>먼저 아이디를 입력하세요</font>";
 	else
 		window.open("checkId.jsp?id="+sId, "checkId", "width=500 height=150 left=700 top=200");
+		//부트스트랩 - dialog로 대체 가능
 }
 function resetCheck(){
 	document.writeForm.check.value=0;
