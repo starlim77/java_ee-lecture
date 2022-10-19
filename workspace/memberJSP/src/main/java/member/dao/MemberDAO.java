@@ -117,6 +117,7 @@ public class MemberDAO {
 			rs=pstmt.executeQuery();
 			
 			exist=rs.next();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -128,7 +129,6 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}	
-		
 		return exist;
 	}
 	
