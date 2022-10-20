@@ -34,7 +34,7 @@ memberDTO.setAddr2(addr2);
 
 //DB
 MemberDAO memberDAO = MemberDAO.getInstance(); //싱글톤
-memberDAO.memberWrite(memberDTO);
+int su = memberDAO.memberWrite(memberDTO);
  %>   
  
 <!DOCTYPE html>
@@ -44,11 +44,17 @@ memberDAO.memberWrite(memberDTO);
 <title>Insert title here</title>
 </head>
 <body>
+<%if(su==1){ %>
+	<p>완료</p>
+<%}else { %>
+	<p>실패</p>
+<%} %>
 <script type="text/javascript">
-window.onload = function(){
+
+/* window.onload = function(){
 	alert("회원가입 성공")
 	location.href = 'loginForm.jsp';
-}
+} */
 </script>
 	<br>
 	<input type="button" value="회원가입" onclick="location.href='writeForm.jsp';">

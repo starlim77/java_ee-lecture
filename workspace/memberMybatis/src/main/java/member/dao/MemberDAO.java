@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -34,11 +35,21 @@ public class MemberDAO {
 		}
 	}
 	
-	public void memberWrite(MemberDTO memberDTO) {
+	public int memberWrite(MemberDTO memberDTO) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		
-		sqlSession.insert("memberSQL.write", memberDTO);
+		int su = sqlSession.insert("memberSQL.write", memberDTO);
 		sqlSession.commit();
 		sqlSession.close();
+		return su;
+	}
+	
+	public String memberLogin(Map<String, String> map) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		String name = null;
+		
+		name = sqlSession.selectOne("memberSQL.memberLogin", map);
+		sqlSession.close();
+		return name;
 	}
 }

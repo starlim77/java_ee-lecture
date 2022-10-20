@@ -9,6 +9,7 @@ public class UserInsertService implements UserService {
 	
 	@Override
 	public void execute() {
+		
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.print("이름 입력 : ");
