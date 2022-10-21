@@ -42,5 +42,5 @@ function checkId(){
 		//부트스트랩 - dialog로 대체 가능
 }
 function resetCheck(){
-	document.writeForm.check.value=1; // select 배운 후 수정할 부분
+	document.writeForm.check.value=0;
 }

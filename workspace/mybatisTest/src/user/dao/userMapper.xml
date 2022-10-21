@@ -18,7 +18,26 @@
   	<delete id="delete" parameterType="java.lang.String">
   		delete usertable where id=#{id}
   	</delete>
-  	<select id="search" parameterType="java.lang.Map" resultType="user"> 
+  	<select id="search" parameterType="java.util.Map" resultType="user"> 
   		select * from usertable where ${order} like '%'||#{search}||'%'
+  													<!-- '%${search}%' -->
+  		<!-- select * from usertable where	 -->
+  	    <!-- XML -->
+  		<!-- <if test="order=='name'">
+  			name like '%'|| #{search} || '%'
+  		</if>
+  			<if test="order=='name'">
+  			id like '%'|| #{search} || '%'
+  		</if> -->
+  		
+  		<!-- <choose>
+  			<when test="order=='name'">
+  				name like '%'|| #{search} || '%'
+  			</when>
+  			<otherwise>
+  				id like '%'|| #{search} || '%'
+  			</otherwise>
+  		</choose> -->
+  		
   	</select>
   </mapper>

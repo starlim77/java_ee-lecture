@@ -37,7 +37,7 @@
 			<tr>
 				<td align="center">아이디</td>
 				<td>
-					<input type="text" name="id" id="id" placeholder="아이디 입력">  <!-- onkeydown="resetCheck()" -->
+					<input type="text" name="id" id="id" placeholder="아이디 입력" onkeydown="resetCheck()">
 					<input type="button" value="중복체크" onclick="checkId()">
 					<input type="hidden" name="check" value=1> <!-- select 배운 후 수정 -->
 					<div class="caution" id="idDiv"></div>

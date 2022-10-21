@@ -9,4 +9,7 @@
   	<select id="memberLogin" resultType="String" parameterType="java.util.Map">
   		select name from member where id = #{id} and pwd = #{pwd}
   	</select>
+  	<select id="isExistId" resultType="String" parameterType="String">
+  		select id from member where id=#{id}
+  	</select>
   </mapper>

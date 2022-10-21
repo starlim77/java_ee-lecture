@@ -10,7 +10,7 @@ public class UserSearchService implements UserService {
 
 	@Override
 	public void execute() {
-				
+		
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("1. 이름 검색");
@@ -25,7 +25,7 @@ public class UserSearchService implements UserService {
 		UserDAO userDAO = UserDAO.getInstanse();
 		List<UserDTO> list = userDAO.search(num, search);
 		
-		if(list.toString()!="[]") {
+		if(list.toString()!="[]") {// list.size()==0 
 			for(UserDTO userDTO : list) {
 				System.out.println(userDTO.getName() + "\t"
 				          +userDTO.getId() + "\t"

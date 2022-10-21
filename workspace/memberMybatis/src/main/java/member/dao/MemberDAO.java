@@ -1,12 +1,8 @@
 package member.dao;
 
 import java.io.IOException;
+
 import java.io.Reader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -52,4 +48,14 @@ public class MemberDAO {
 		sqlSession.close();
 		return name;
 	}
+	
+	public boolean isExistId(String id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		boolean exist = true;
+		String chechedId=null;
+		chechedId = sqlSession.selectOne("memberSQL.isExistId", id);
+		if(chechedId==null) exist=false;
+		return exist;
+	}
+	
 }
