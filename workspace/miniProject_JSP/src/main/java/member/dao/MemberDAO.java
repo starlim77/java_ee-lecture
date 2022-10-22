@@ -2,7 +2,6 @@ package member.dao;
 
 import java.io.IOException;
 
-
 import java.io.Reader;
 import java.util.Map;
 
@@ -41,13 +40,13 @@ public class MemberDAO {
 		return su;
 	}
 	
-	public String memberLogin(Map<String, String> map) {
+	public MemberDTO memberLogin(Map<String, String> map) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		String name = null;
 		
-		name = sqlSession.selectOne("memberSQL.memberLogin", map);
+		MemberDTO memberDTO = sqlSession.selectOne("memberSQL.memberLogin", map);
 		sqlSession.close();
-		return name;
+		return memberDTO;
 	}
 	
 	public boolean isExistId(String id) {
