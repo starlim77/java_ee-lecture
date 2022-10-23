@@ -1,7 +1,6 @@
 package member.dao;
 
 import java.io.IOException;
-
 import java.io.Reader;
 import java.util.Map;
 
@@ -11,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import member.bean.MemberDTO;
+
 
 public class MemberDAO {
 	
@@ -42,8 +42,7 @@ public class MemberDAO {
 	
 	public MemberDTO memberLogin(Map<String, String> map) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		String name = null;
-		
+	
 		MemberDTO memberDTO = sqlSession.selectOne("memberSQL.memberLogin", map);
 		sqlSession.close();
 		return memberDTO;
