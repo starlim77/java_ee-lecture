@@ -3,7 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="boardSQL">
-  	<insert id="boardWrite" parameterType="boardDTO">
+  
+  	<insert id="boardWrite" parameterType="java.util.Map">
   	insert into board(seq, id, name, email, subject, content, ref) values(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.nextval)
     </insert>
+    
+    <select id="boardList" parameterType="java.util.Map" resultType="boardDTO">
+    select * from(select rownum rn, b.* 
+                  from (select * from board order by seq desc) b) 
+    where rn &gt;= ${first} and rn &lt;= ${last}
+    </select>
+    
+   
+    
   </mapper>

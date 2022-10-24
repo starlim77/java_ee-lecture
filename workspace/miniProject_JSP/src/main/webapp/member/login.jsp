@@ -33,19 +33,22 @@ if(memberDTO!=null){
 <title>Insert title here</title>
 </head>
 <body>
-<script src="login('<%=name%>')"></script>
-<%-- <% if(id!=null){
+<script src="login('<%=name%>')"></script><% if(id!=null){
 	session.setAttribute("memId", id);
 	session.setAttribute("memName", name);
 	session.setAttribute("memEmail", email);
+	
+	session.setAttribute("memberDTO", memberDTO); //session에 객체를 넣는 것도 가능하다.
 %>
 	<%=name %>님 로그인~ 환영합니다.
 <% }else{%>	
 	아이디 또는 비밀번호가 틀렸습니다.
-<% } %> --%>
+<% } %>
 <br>
 <input type="button" onclick="login('<%=name %>')" value="알림"/>
 <input type="button" value="메인화면" onclick="location.href='../index.jsp';">
+<img src="../img/marie.jpeg" width="70" heigth="70" onclick="location.href='../index.jsp'"
+		style="cursor:pointer;">
 <script type="text/javascript">
 function login(name){
 	if(name!="null"){

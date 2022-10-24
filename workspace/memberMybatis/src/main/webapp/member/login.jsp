@@ -35,8 +35,20 @@ if(name == null){
 	//response.sendRedirect("loginOk.jsp?name="+URLEncoder.encode(name, "UTF-8"));
 	
 	//세션
-//	HttpSession sssion = request.getSession(); //세션 생성 - servlet에 이미 만들어져있다
-	session.setAttribute("memName", name);
+	//	HttpSession sssion = request.getSession(); //세션 생성 - servlet에 이미 만들어져있다
+
+	//session.setAttribute("memName", name);
+
+	//쿠키 
+	Cookie cookie = new Cookie("memName", name);
+	cookie.setMaxAge(30 * 60); //초
+	//클라이언트에게 보내기
+	response.addCookie(cookie);
+	
+	Cookie cookie2 = new Cookie("memId", id);
+	cookie2.setMaxAge(30 * 60 ); //초
+	//클라이언트에게 보내기
+	response.addCookie(cookie2);
 	
 	//페이지 이동
 	response.sendRedirect("loginOk.jsp");
