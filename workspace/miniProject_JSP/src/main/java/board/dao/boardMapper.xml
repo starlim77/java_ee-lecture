@@ -9,11 +9,27 @@
     </insert>
     
     <select id="boardList" parameterType="java.util.Map" resultType="boardDTO">
+    
+    <![CDATA[
     select * from(select rownum rn, b.* 
-                  from (select * from board order by seq desc) b) 
-    where rn &gt;= ${first} and rn &lt;= ${last}
+                  from (select * from board order by seq desc) b)
+    where rn >= #{first} and rn <= #{last}
+    ]]>
+    
+    <!-- where rn between ${first} and ${last} -->
+    <!-- 
+    > gt
+    < lt
+    >= ge
+    <= le
+    == eq
+    != ne
+     -->
     </select>
     
+    <select id="getTotalA" resultType="int">
+    select count(*) from board
+    </select>
    
     
   </mapper>

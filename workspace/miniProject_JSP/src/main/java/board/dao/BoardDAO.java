@@ -57,4 +57,12 @@ public class BoardDAO {
 		return list;
 	}
 	
+	public int getTotalA() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		int totalA = sqlSession.selectOne("boardSQL.getTotalA");
+		sqlSession.close();
+		return totalA;
+	}
+	
 }

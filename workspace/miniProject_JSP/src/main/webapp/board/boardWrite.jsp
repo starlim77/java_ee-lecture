@@ -46,4 +46,10 @@ int su = boardDAO.boardWrite(map); //boardWriteForm에서 유효성 검사로 �
 <br>
 <input type="button" value="메인화면" onclick="location.href='../index.jsp';">
 </body>
+<script type="text/javascript">
+window.onload=function(){
+	alert("완료");
+	location.href="boardList.jsp?pg=1";
+}
+</script>
 </html>
