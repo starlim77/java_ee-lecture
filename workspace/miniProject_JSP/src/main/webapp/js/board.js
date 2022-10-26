@@ -14,17 +14,8 @@ function boardWriteCheck(){
 	
 }
 
-function boardPaging(pg){
-	alert("asdfasdf");
-	location.href="../board/boardList.jsp?pg="+pg;
-}
 
-function isLogin(id){
-	
-	if(id!=null){
-		location.href="../board/boardView.jsp";
-	}
-	else alert("먼저 로그인 해주세요");
-}
+
+
 
 

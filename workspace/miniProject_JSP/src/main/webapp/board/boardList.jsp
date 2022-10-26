@@ -68,7 +68,7 @@ input{
 	text-decoration:none;
 	color:black;
 }
-.subjectA:hover{
+.subjectA:hover{   /* link, visited, hover, active */
 	text-decoration:underline;
 	color:green;
 	cursor:pointer;
@@ -88,14 +88,12 @@ input{
 SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd");
 String id=null;
 id = (String)session.getAttribute("memId");
-System.out.println(id);
 %>
-<input type="hidden" id="id" value="<%=id%>">
 <% if(list!=null){%>
 	<%for(BoardDTO boardDTO : list){%>
 	<tr>
 		<td class="seq"  align="center"><%=boardDTO.getSeq() %></td>
-		<td class="subjectA" onclick="isLogin(<%=boardDTO.getSeq()%>,<%=pg%>)"><%=boardDTO.getSubject() %></td>
+		<td class="subjectA" onclick="isLogin('<%=id %>',<%=boardDTO.getSeq()%>,<%=pg%>)"><%=boardDTO.getSubject() %></td>
 		<td align="center"><%=boardDTO.getId() %></td>
 		<td align="center"><%=boardDTO.getHit() %></td>
 		<td align="center"><%=simple.format(boardDTO.getLogtime()) %></td>
@@ -117,9 +115,8 @@ function boardPaging(pg){
 	location.href="boardList.jsp?pg="+pg;
 }
 
-function isLogin(seq,pg){
-	
-	if(document.getElementById("id").value != "null" ){
+function isLogin(id,seq,pg){
+	if(id != "null" ){
 		location.href="boardView.jsp?seq="+seq+"&pg="+pg;
 	}
 	else alert("로그인 먼저 하세요");
