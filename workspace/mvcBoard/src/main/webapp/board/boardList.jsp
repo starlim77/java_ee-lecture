@@ -65,7 +65,7 @@ input{
 		<td class="subjectA" onclick="isLogin('${memId}',${boardDTO.seq},${param.pg})">${boardDTO.subject}</td>
 		<td align="center">${boardDTO.id}</td>
 		<td align="center">${boardDTO.hit}</td>
-		<td align="center"><fmt:formatDate value="${boardDTO.logtime}" pattern="yy.MM.dd"/></td>
+		<td align="center"><fmt:formatDate value="${boardDTO.logtime}" pattern="yyyy.MM.dd"/></td>
 	</tr>
 </c:forEach>
 </table>

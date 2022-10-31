@@ -1,6 +1,9 @@
 package board.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +23,7 @@ public class ListService implements CommandProcess {
 		int pg = Integer.parseInt(pgString);
 		//DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		java.util.List<BoardDTO> list = boardDAO.boardList(pg);
+		List<BoardDTO> list = boardDAO.boardList(pg);
 		
 		request.setAttribute("list",list);
 		
@@ -41,7 +44,7 @@ public class ListService implements CommandProcess {
 
 		request.setAttribute("pagingHTML", boardPaging.getPagingHTML());
 		
-		return "/board/boardList.jsp?pg="+pg;
+		return "/board/boardList.jsp";
 	}
 
 }
