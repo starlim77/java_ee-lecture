@@ -2,6 +2,11 @@ function change(){
 	document.writeForm.email2.value=document.writeForm.email3.value;
 }
 
+function changeEmail(){
+	document.updateForm.email2.value=document.updateForm.email3.value;
+}
+
+
 function checkId(){
 	var sId = document.getElementById("id").value;
 	

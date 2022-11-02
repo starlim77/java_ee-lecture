@@ -14,14 +14,14 @@ public class UpdateFormService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("memId");
+//		HttpSession session = request.getSession();
+//		String id = (String)session.getAttribute("memId");
+//		
+//		MemberDAO memberDAO = MemberDAO.getInstance();
+//		MemberDTO memberDTO = memberDAO.updateForm(id);
+//		request.setAttribute("memberDTO", memberDTO);
 		
-		MemberDAO memberDAO = MemberDAO.getInstance();
-		MemberDTO memberDTO = memberDAO.updateForm(id);
-		request.setAttribute("memberDTO", memberDTO);
-		
-		request.setAttribute("display", "/member/updateForm.jsp");
+		request.setAttribute("display", "/member/updateForm_t.jsp");
 		return "/index.jsp";
 	}
 

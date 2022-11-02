@@ -15,14 +15,14 @@ body {
 }
 
 #header {
-   width: 1700px;
+   width: 100%;
    height: 10%;
    text-align: center;
 }
 
 #container {
    margin: auto;
-   width: 1700px;
+   width: 100%;
    height: 500px;
 }
 
@@ -48,22 +48,31 @@ body {
 }
 
 #footer {
-   width: 1700px;
+  
    height: 10%;
 }
 #outer{
 	width="100%";
 }
+#head{
+	display:inline-block;
+}
+#first__header{
+
+}
 </style>
 </head>
 <body>
+<div id="wrap">
 <div id="outer">
 <div id="header">
-	<h1>
+	<div id="first__header">
 		<img alt="사각새 gif" src="/miniProject_MVC/image/flying-bird.gif" style="cursor:pointer;" width="100"
-		onclick="location.href='/miniProject_MVC/index.jsp'"/>
-		MVC 미니 프로젝트
-	</h1>
+			onclick="location.href='/miniProject_MVC/index.jsp'"/>
+		<h1 id="head">
+			<span>MVC 미니 프로젝트</span>
+		</h1>
+	</div>
 	<jsp:include page="./main/menu.jsp"/>
 </div><!-- #header -->
 
@@ -88,5 +97,6 @@ body {
 <div id ="footer">
 </div><!-- #footer -->
 </div>
+</div><!-- #wrap -->
 </body>
 </html>

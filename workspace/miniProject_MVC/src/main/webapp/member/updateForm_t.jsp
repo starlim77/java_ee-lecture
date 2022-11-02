@@ -31,20 +31,20 @@
 			<tr>
 				<td align="center" width="80">이름</td>
 				<td>
-					<input type="text" name="name" id="name" placeholder="이름 입력" value="${memberDTO.name}">
+					<input type="text" name="name" id="name" placeholder="이름 입력">
 					<div class="caution" id="nameDiv"></div>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">아이디</td>
 				<td>
-					<input type="text" name="id" id="id" readonly value="${memberDTO.id}">
+					<input type="text" name="id" id="id" readonly>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">비밀번호</td>
 				<td>
-					<input type="password" name="pwd" id="pwd" value="${memberDTO.pwd}">
+					<input type="password" name="pwd" id="pwd">
 					<div class="caution" id="pwdDiv"></div>
 				</td>
 			</tr>
@@ -58,26 +58,19 @@
 			<tr>
 				<td align="center">성별</td>
 				<td>
-					<c:choose>
-						<c:when test="${memberDTO.gender=='0'}">
-							<c:set var="male" value="checked"/>
-						</c:when>
-						<c:otherwise>
-							<c:set var="female" value="checked"/>
-						</c:otherwise>
-					</c:choose>
-					<input type="radio" name="gender" id="male" value="0" <c:out value="${male}"/>/>
+					
+					<input type="radio" name="gender" id="male" value="0" />
 					<label for="male">남</label>
-					<input type="radio" name="gender" id="female" value="1" <c:out value="${female}"/>/>
+					<input type="radio" name="gender" id="female" value="1"/>
 					<label for="female">여</label>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">이메일</td>
 				<td>
-					<input type="email" name="email1" id="emial1" value="${memberDTO.email1}">
+					<input type="email" name="email1" id="email1" >
 					<span>@</span>
-					<input class="email2" type="email" name="email2" value="${memberDTO.email2}">
+					<input class="email2" type="email" name="email2" id="email2">
 					<select class="email" name="email3" onchange="changeEmail()">
 						<option value="">-이메일 직접 입력-</option>
 						<option>gmail.com</option>
@@ -89,35 +82,24 @@
 			<tr>
 				<td align="center">핸드폰</td>
 				<td>
-					<select name="tel1" class="phone">
-						<c:choose>
-							<c:when test="${memberDTO.tel1=='010'}">
-								<c:set var="t010" value="selected"/>
-							</c:when>
-							<c:when test="${memberDTO.tel1=='011'}">
-								<c:set var="t011" value="selected"/>
-							</c:when>
-							<c:otherwise>
-								<c:set var="t019" value="selected"/>
-							</c:otherwise>
-						</c:choose>
-						<option <c:out value="${t010}"/>>010</option>
-						<option <c:out value="${t011}"/>>011</option>
-						<option <c:out value="${t019}"/>>019</option>
+					<select name="tel1" id="tel1" class="phone">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="019">019</option>
 					</select>
 					<span>-</span>
-					<input class="phone" type="tel" name="tel2" id="tel2" value="${memberDTO.tel2}">
+					<input class="phone" type="tel" name="tel2" id="tel2" >
 					<span>-</span>
-					<input class="phone" type="tel" name="tel3" id="tel3" value="${memberDTO.tel3}">
+					<input class="phone" type="tel" name="tel3" id="tel3" >
 				</td>
 			</tr>
 			<tr>
 				<td align="center">주소</td>
 				<td>
-					<input type="text" name="zipcode" id="zipcode" readonly value="${memberDTO.zipcode}">
+					<input type="text" name="zipcode" id="zipcode" readonly >
 					<input type="button" value="우편번호검색" onclick="checkPost()"><br>
-					<input class="address" type="text" name="addr1" id="addr1" placeholder="주소" readonly value="${memberDTO.addr1}"><br>
-					<input class="address" type="text" name="addr2" id="addr2" placeholder="상세주소" value="${memberDTO.addr2}">
+					<input class="address" type="text" name="addr1" id="addr1" placeholder="주소" readonly ><br>
+					<input class="address" type="text" name="addr2" id="addr2" placeholder="상세주소" >
 				</td>
 			</tr>
 			<tr>
@@ -130,6 +112,33 @@
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script> <!-- CDN방식 -->
 <!-- <script src="../js/jquery-3.6.1.min.js"></script> -->
+<script type="text/javascript">
+$(function(){//  window.onload=function(){} 인 자바스크립트와 같은 기능
+	$.ajax({
+		url: '/miniProject_MVC/member/getMember.do'
+	   ,type: 'post'
+	   ,dataType: 'json' /* text, html, json, xml */
+	   ,success:function(data){
+		   //alert(JSON.stringify(data));
+		   $('#name').val(data.name);
+		   $('#id').val(data.id);
+		   $('input[name="gender"]:eq('+data.gender+')').attr("checked", true);
+		   $('#email1').val(data.email1);
+		   $('#email2').val(data.email2);
+		   $('#tel1').val(data.tel1);
+		   $('#tel2').val(data.tel2);
+		   $('#tel3').val(data.tel3);
+		   $('#zipcode').val(data.zipcode);
+		   $('#addr1').val(data.addr1);
+		   $('#addr2').val(data.addr2);
+	   }
+	   ,error:function(err){
+		   console.log(err);
+	   }
+	});//$.ajax
+});//$
+
+</script>
 <script src="../js/member.js"></script>
 <!-- 우편번호 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

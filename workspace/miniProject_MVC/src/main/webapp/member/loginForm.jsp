@@ -10,11 +10,15 @@ div{
 	color:red;
 	font-size:0.7em;
 }
+body{
+	margin: 0 auto;
+	width:400px;
+}
 </style>
 </head>
 <body>
 	<h3>로그인</h3>
-	<form name = "loginForm">
+	<form name = "loginForm" id="loginForm">
 		<table border="2px" cellspacing="0" cellpadding="3px">
 			<tr>
 				<td align="center">아이디</td>
