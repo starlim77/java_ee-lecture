@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<title>Insert title here</title>
+<style type="text/css">
+html{height:100%;}
+body{height:100%;}
+#map{width:100%; height:100%;}
+</style>
+</head>
+<body>
+<div id="map">
+
+</div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a2f81a6158e621eac547adfa367006b"></script>
+<script type="text/javascript">
+window.onload=function(){
+	var position = new daum.maps.LatLng(37.57973482654123, 126.97539944309719);
+	var container = document.getElementById('map'); 
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+			center: position, //지도의 중심좌표.
+			level: 3, //지도의 레벨(확대, 축소 정도)
+			draggable:false //마우스 드래그하여 확대/축소 불가
+		};
+	var map = new kakao.maps.Map(container, options); //지도 생성
+	
+	var marker = new daum.maps.Marker({
+		position:position //지도 중심 좌표에 마커를 생성
+	});//마커 생성
+	marker.setMap(map); //마커 표시
+}
+</script>
+</body>
+</html>
+
+<!-- 
+1. 뷰포트 선언
+   <meta name="viewport"
+2. 컨텐트 선언
+   content="width=device-width (디바이스 크기에 맞추겠다고 선언)
+            initial-scale=1.0 (초기 크기 스케일 설정)
+            minimum-scale=1.0 (최소 크기 설정 / 범위: 0~10.0)
+            maximum-scale=1.0 (최대 크기 설정 / 범위: 0~10.0)
+            user-scalable=no (사용자 기기 확대기능 사용 유/무 설정, yes/no)
+            
+Kakao Maps API 
+- 다양한 기능과 소스를 알려준다
+https://apis.map.kakao.com/web/sample/enableDisableZoomInOut/            
+  -->
+  
+<!--
+1. 구글 - [위도 경도] 검색
+
+2. gps좌표
+https://coordinates-gps.gosur.com/ko/
+ -->

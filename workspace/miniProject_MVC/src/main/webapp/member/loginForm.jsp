@@ -32,29 +32,17 @@ div{
 			</tr>
 			<tr >
 				<th colspan="2">
-					<input type="button" value="로그인" onclick="checkLogin()">
+					<input type="button" value="로그인" id="loginBtn">
 					<input type="button" value="회원가입" onclick="location.href='writeForm.do';">
 				</th>
 			</tr>
 		</table>
+		<br>
+		<br>
+		<div id="loginResult">
+		</div>
 	</form>
 	<script src="../js/jquery-3.6.1.min.js"></script>
 	<script src="../js/member.js"></script>
-	<!-- <script>
-		function checkLogin(){
-			sw=0;
-			document.getElementById("idDiv").innerText="";
-			document.getElementById("pwdDiv").innerText="";
-			if(document.loginForm.id.value==""){
-				document.getElementById("idDiv").innerText="아이디를 입력하세요";
-				sw=1;
-			}
-			if(document.loginForm.pwd.value=="") {
-				document.getElementById("pwdDiv").innerText="비밀번호를 입력하세요";
-				sw=1;
-			}
-			if(sw==0) document.loginForm.submit();
-		}	
-	</script> -->
 </body>
 </html>

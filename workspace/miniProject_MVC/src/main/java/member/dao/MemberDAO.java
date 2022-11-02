@@ -57,5 +57,23 @@ public class MemberDAO {
 		sqlSession.close();
 		return exist;
 	}
+
+	public MemberDTO updateForm(String id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		MemberDTO memberDTO = null;
+		memberDTO=sqlSession.selectOne("memberSQL.updateForm", id);
+		sqlSession.close();
+		
+		return memberDTO;
+	}
+
+	public int update(MemberDTO memberDTO) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int su=0;
+		su = sqlSession.update("memberSQL.update", memberDTO);
+		sqlSession.commit();
+		sqlSession.close();
+		return su;
+	}
 	
 }

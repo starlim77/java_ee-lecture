@@ -1,35 +1,7 @@
 function change(){
 	document.writeForm.email2.value=document.writeForm.email3.value;
 }
-function checkWrite(){
-	sw=0;
-	document.getElementById("nameDiv").innerText="";
-	document.getElementById("idDiv").innerText="";
-	document.getElementById("pwdDiv").innerText="";
-	document.getElementById("repwdDiv").innerText="";
-	if(document.getElementById("name").value == ""){
-		document.getElementById("nameDiv").innerText="이름을 입력하세요";
-		sw=1;
-	}
-	if(document.getElementById("id").value == ""){
-		document.getElementById("idDiv").innerText="아이디를 입력하세요";
-		sw=1;
-	}
-	if(document.getElementById("pwd").value == ""){
-		document.getElementById("pwdDiv").innerText="비밀번호를 입력하세요";
-		sw=1;
-	}
-	if(document.getElementById("pwd").value != document.getElementById("repwd").value){
-		document.getElementById("repwdDiv").innerText="비밀번호가 맞지 않습니다";
-		sw=1;
-	}
-	if(sw==0) {
-		if(document.writeForm.check.value==1) document.writeForm.submit();
-		else alert("아이디 중복체크 하세요")
-	}
-	
-	
-}//checkWrite()
+
 function checkId(){
 	var sId = document.getElementById("id").value;
 	
@@ -81,8 +53,10 @@ $('#id').focusout(function(){
 });
 
 //유효성 검사 및 로그인
-$('#loginPwd').focusout(function(){
-		
+$('#loginBtn').click(function(){
+	$('#idDiv').text('');
+	$('#pwdDiv').text('');
+	
 	if($("#loginId").val()==''){
 		$('#idDiv').text('아이디를 입력하세요');
 		$('#idDiv').css('color','magenta');
@@ -97,24 +71,111 @@ $('#loginPwd').focusout(function(){
 		//서버로 요청하고 제자리로 돌아와라
 		//jquery.ajax();
 		$.ajax({
-			url:'/miniProject_MVC/member/login.do',//서버로 요청할 url
+			url:'http://localhost:8080/miniProject_MVC/member/login.do',//서버로 요청할 url
 			type:'post',//get or post
-			data: 'id='+$("#loginId").val() +'&'+ 'pwd='+$("#loginPwd").val(),//서버로 보낼 데이터
+			//data: 'id='+$("#loginId").val() +'&'+ 'pwd='+$("#loginPwd").val(),//서버로 보낼 데이터
+			data: {'id': $('#loginId').val(), 'pwd':$('#loginPwd').val()},
 			dataType: 'text',//서버로부터 받은 데이터 자료형 (text, html, xml, json)
 			success:function(data){
 				data=data.trim();
-				if(data == 'login_fail'){//사용불가능
-					$('#pwdDiv').text('로그인 실패');
-					$('#pwdDiv').css('color','red');
-					
-				}else if(data == 'login'){//사용 가능
-					$('#pwdDiv').text('로그인 완료');
-					$('#pwdDiv').css('color','blue');
+				if(data == 'login_fail'){
+					$('#loginResult').text('아이디 또는 비밀번호가 맞지 않습니다.');
+					$('#loginResult').css('color','red');
+					$('#loginResult').css('font-size','12pt');
+				}else if(data == 'login'){
+					location.href='../index.jsp'
 				}
 				
 			},
 			error:function(){}
 		});//$.ajax
 	}
+});
+
+//회원가입 버튼
+$('#writeBtn').click(function(){
+	$('#nameDiv').empty;
+	$('#idDiv').empty;
+	$('#pwdDiv').empty;
+	$('#repwdDiv').empty;
+	sw=0;
+	if($('#name').val()==''){
+		$('#nameDiv').text("이름을 입력하세요");
+		sw=1;
+	}
+	if($('#id').val()==''){
+		$('#idDiv').text("아이디를 입력하세요");
+		sw=1;
+	}
+	if($('#pwd').val()==''){
+		$('#pwdDiv').text("비밀번호를 입력하세요");
+		sw=1;
+	}
+	if($('#pwd').val()!=$('#repwd').val()){
+		$('#pwdDiv').text("비밀번호가 맞지 않습니다");
+		sw=1;
+	}
+	if(sw==0) {
+			$.ajax({
+			url:'http://localhost:8080/miniProject_MVC/member/write.do',//서버로 요청할 url
+			type:'post',//get or post
+			data: $('#writeForm').serialize(),
+			success:function(){
+				alert("회원가입 성공");
+				location.href="/miniProject_MVC/index.jsp";
+			},
+			error:function(err){
+				console.log(err);
+			}
+			});//$.ajax
+	}
+		
+});
+
+$('#updateBtn').click(function(){
+	
+	
+	$('#nameDiv').empty;
+	$('#pwdDiv').empty;
+	$('#repwdDiv').empty;
+	sw=0;
+	
+	if($('#name').val()==''){
+		$('#nameDiv').text("아이디를 입력하세요");
+		sw=1;
+	}
+	if($('#pwd').val()==''){
+		$('pwdDiv').text('비밀번호를 입력하세요');
+		sw=1;
+	}
+	if($('#pwd').val()!=$('#repwd').val()){
+		$('#repwdDiv').text('비밀번호가 일치하지 않습니다');
+		sw=1;
+	}
+	if(sw==0){
+		$.ajax({
+			url:'http://localhost:8080/miniProject_MVC/member/update.do',
+			type:'post',
+			data: $('#updateForm').serialize(),
+			dataType:'text',
+			success:function(result){
+				result=result.trim();
+				if(result=='update_success'){
+					alert('업데이트 완료');
+					location.href="/miniProject_MVC/index.jsp";
+				}else{
+					alert('업데이트 실패');
+					location.href="/miniProject_MVC/index.jsp";
+				}
+			},
+			error:function(err){
+				console.log(err);
+			}
+			
+		});
+	}
+	
+
+	
 });
 
