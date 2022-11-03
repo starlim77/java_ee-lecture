@@ -1,33 +1,7 @@
-<%@page import="board.dao.BoardDAO"%>
-<%@page import="board.bean.BoardPaging"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="board.bean.BoardDTO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String pgString = request.getParameter("pg");
-
-int pg = Integer.parseInt(pgString);
-//DB
-BoardDAO boardDAO = BoardDAO.getInstance();
-List<BoardDTO> list = boardDAO.boardList(pg);
-
-//페이징 처리
-int totalA = boardDAO.getTotalA();//총글수
-
-
-BoardPaging boardPaging = new BoardPaging();
-
-boardPaging.setCurrentPage(pg);
-boardPaging.setPageBlock(3);
-boardPaging.setPageSize(5);
-boardPaging.setTotalA(totalA);
-
-boardPaging.makePagingHTML();
-
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +50,9 @@ input{
 </style>
 </head>
 <body>
-<table border="1" cellpadding="5" frame="hsides" rules="rows">
+<input type="hidden" id="pg" value="${pg}">
+
+<table id="boardListTable" border="1" cellpadding="5" frame="hsides" rules="rows">
 	<tr>
 		<th style="width:100px">글번호</th>
 		<th style="width:400px">제목</th>
@@ -84,43 +60,30 @@ input{
 		<th style="width:100px">조회수</th>
 		<th style="width:200px">작성일</th>
 	</tr>
-<%
-SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd");
-String id=null;
-id = (String)session.getAttribute("memId");
-%>
-<% if(list!=null){%>
-	<%for(BoardDTO boardDTO : list){%>
-	<tr>
-		<td class="seq"  align="center"><%=boardDTO.getSeq() %></td>
-		<td class="subjectA" onclick="isLogin('<%=id %>',<%=boardDTO.getSeq()%>,<%=pg%>)"><%=boardDTO.getSubject() %></td>
-		<td align="center"><%=boardDTO.getId() %></td>
-		<td align="center"><%=boardDTO.getHit() %></td>
-		<td align="center"><%=simple.format(boardDTO.getLogtime()) %></td>
-	</tr>
 	
-	<%
-	} %>
-<%} %>
+	<!-- 동적 처리 -->
+	
 </table>
 <div id="haha">
 	<input type="button" value="메인화면" onclick="location.href='../index.jsp'">
 	<div id="pagingDiv">
-		<%= boardPaging.getPagingHTML() %>
+		${pagingHTML}
 	</div>
 </div>
 
 <script type="text/javascript">
 function boardPaging(pg){
-	location.href="boardList.jsp?pg="+pg;
+	location.href="boardList.do?pg="+pg;
 }
 
 function isLogin(id,seq,pg){
 	if(id != "null" ){
-		location.href="boardView.jsp?seq="+seq+"&pg="+pg;
+		location.href="boardView.do?seq="+seq+"&pg="+pg;
 	}
 	else alert("로그인 먼저 하세요");
 }
 </script>
+<script type="text/javascript" src="http://code.jquery.com.jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../js/boardList.js"></script>
 </body>
 </html>

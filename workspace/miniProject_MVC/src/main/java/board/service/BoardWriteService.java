@@ -17,7 +17,6 @@ public class BoardWriteService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId");

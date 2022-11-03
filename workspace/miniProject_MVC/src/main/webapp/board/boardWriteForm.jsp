@@ -46,10 +46,12 @@ $('#writeBoardBtn').click(function(){
 	let sw=0;
 	if($('#subject').val()==''){
 		$('#subjectDiv').text('제목을 입력하세요');
+		$('#subject').focus();
 		sw=1;
 	}
 	if($('#content').val()==''){
 		$('#contentDiv').text('내용을 입력하세요');
+		$('#content').focus();
 		sw=1;
 	}
 	if(sw==0){
@@ -57,6 +59,12 @@ $('#writeBoardBtn').click(function(){
 			url:'http://localhost:8080/miniProject_MVC/board/boardWrite.do'
 		   ,type:'post'
 		   ,data: 'subject='+$('#subject').val()+'&content='+$('#content').val()
+		   /*
+		   ,data:{
+			   'subject':$('#subject').val()
+			  ,'content':$('#content').val()
+		   }
+		   */
 		   ,dataType:'text'
 		   ,success:function(result){
 			   result=result.trim()
