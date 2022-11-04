@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,22 +49,24 @@ public class GetBoardListService implements CommandProcess {
 			json.put("list", array);
 		}//if
 		
+		HttpSession session = request.getSession();
+		String memId = (String)session.getAttribute("memId");
+		
 	
 		//페이징 처리
 		int totalA = boardDAO.getTotalA();//총글수
 		
 		BoardPaging boardPaging = new BoardPaging();
-
+		
 		boardPaging.setCurrentPage(pg);
 		boardPaging.setPageBlock(3);
 		boardPaging.setPageSize(5);
 		boardPaging.setTotalA(totalA);
-
 		boardPaging.makePagingHTML();
-
-		request.setAttribute("pg", pg);
+		
+		json.put("pagingHTML", boardPaging.getPagingHTML()+""); //StringBuffer --> String
+		request.setAttribute("memId", memId);
 		request.setAttribute("json", json);
-		request.setAttribute("pagingHTML", boardPaging.getPagingHTML());
 		
 		return "/board/getBoardList.jsp";
 	}

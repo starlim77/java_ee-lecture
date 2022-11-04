@@ -51,6 +51,7 @@ input{
 </head>
 <body>
 <input type="hidden" id="pg" value="${pg}">
+<input type="hidden" id="memId" value="${memId}">
 
 <table id="boardListTable" border="1" cellpadding="5" frame="hsides" rules="rows">
 	<tr>
@@ -67,7 +68,7 @@ input{
 <div id="haha">
 	<input type="button" value="메인화면" onclick="location.href='../index.jsp'">
 	<div id="pagingDiv">
-		${pagingHTML}
+	
 	</div>
 </div>
 
@@ -83,7 +84,7 @@ function isLogin(id,seq,pg){
 	else alert("로그인 먼저 하세요");
 }
 </script>
-<script type="text/javascript" src="http://code.jquery.com.jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../js/boardList.js"></script>
 </body>
 </html>

@@ -64,5 +64,47 @@ public class BoardDAO {
 		sqlSession.close();
 		return totalA;
 	}
+
+	public BoardDTO getBoard(String seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+				
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("seq", seq);
+		
+		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.getBoard", map);
+		sqlSession.close();
+		
+		return boardDTO;
+	}
+
+	public void plusHit(String seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("seq", seq);
+		
+		sqlSession.update("boardSQL.plusHit", seq);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		
+	}
+
+	public void boardUpdate(Map<String, String> map) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		sqlSession.update("boardSQL.boardUpdate", map);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
+
+	public void boardDelete(String seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		sqlSession.delete("boardSQL.boardDelete", seq);
+		sqlSession.commit();
+		sqlSession.close();
+	}
 	
 }

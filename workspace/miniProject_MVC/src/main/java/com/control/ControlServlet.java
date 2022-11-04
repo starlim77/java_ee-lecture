@@ -118,7 +118,6 @@ public class ControlServlet extends HttpServlet {
 	      System.out.println("view = "+ view);
 	      //forward
 	      RequestDispatcher dispatcher = request.getRequestDispatcher(view);//상대번지
-	      System.out.println("dispatcher = "+dispatcher);
 	      dispatcher.forward(request, response);//제어권 넘기기
 		
 	}
