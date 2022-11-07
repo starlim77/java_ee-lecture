@@ -28,6 +28,7 @@
 			<td align="center" width="80">제목</td>
 			<td colspan="5">
 				<input type="text" id="subject" name="subject">
+				<div id="subjectDiv" class="caution"></div>
 			</td>
 		</tr>
 		<tr>
@@ -51,6 +52,7 @@
 					<pre style="white-space:pre-line; word-break:break-all;">
 						<textarea rows="50" id="content" name="content"></textarea>
 					</pre>
+					<div id="contentDiv" class="caution"></div>
 				</div>
 			</td>
 		</tr>
@@ -61,7 +63,9 @@
 	
 	<span id="boardViewSpan">
 		<input type="button" value="수정 완료" id="updateBtn">
+		<input type="button" value="다시 작성" onclick="location.reload()">
 		<input type="button" value="취소" onclick="location.href='/miniProject_MVC/board/boardView.do?seq=${seq}&pg=${pg}'">
+		
 	</span>
 	</div>
 	
@@ -90,22 +94,35 @@ $(function(){
 	});
 });
 
-
-
 $('#updateBtn').click(function(){
-	$.ajax({
-		url:'/miniProject_MVC/board/boardUpdate.do',
-		type:'post',
-		data: $('#boardUpdateForm').serialize(),
-		success:function(){
-			alert("업데이트 완료");
-			location.href='/miniProject_MVC/board/boardList.do?pg='+$('#pg').val();
-		},
-		error:function(err){
-			console.log(err);
-		}
-	});
-});
+	$('#subjectDiv').empty;
+	$('#contentDiv').empty;
+	let sw=0;
+	if($('#subject').val()==''){
+		$('#subjectDiv').text('제목을 입력하세요');
+		$('#subject').focus();
+		sw=1;
+	}
+	if($('#content').val()==''){
+		$('#contentDiv').text('내용을 입력하세요');
+		$('#content').focus();
+		sw=1;
+	}
+	if(sw==0){
+		$.ajax({
+			url:'/miniProject_MVC/board/boardUpdate.do',
+			type:'post',
+			data: $('#boardUpdateForm').serialize(),
+			success:function(){
+				alert("업데이트 완료");
+				location.href='/miniProject_MVC/board/boardList.do?pg='+$('#pg').val();
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});//$.ajax
+	}//if	
+});// .click
 </script>
 </body>
 </html>

@@ -43,17 +43,27 @@ $(function(){
 	});
 });
 
+
 $('#boardDeleteBtn').click(function(){
-	$.ajax({
-		url:'/miniProject_MVC/board/boardDelete.do',
-		type:'post',
-		data:'seq='+$('#seq').val(),
-		success:function(){
-			alert("삭제 완료");
-			location.href='/miniProject_MVC/board/boardList.do?pg=1';	
-		},
-		error:function(err){
-			console.log(err);
-		}
-	});
+	if(confirm("정말로 삭제하시겠습니까?")){
+		$.ajax({
+			url:'/miniProject_MVC/board/boardDelete.do',
+			type:'post',
+			data:'seq='+$('#seq').val(),
+			success:function(){
+				alert("삭제 완료");
+				location.href='/miniProject_MVC/board/boardList.do?pg=1';	
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});//$.ajax
+	}//if
+});
+
+
+//글 수정
+$('#boardUpdateBtn').click(function(){
+	$('#boardViewForm').attr('action','/miniProject_MVC/board/boardUpdateForm.do');
+	$('#boardViewForm').submit();
 });

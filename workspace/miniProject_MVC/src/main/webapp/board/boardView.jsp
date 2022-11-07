@@ -14,8 +14,9 @@
 </style>
 </head>
 <body>
-<form name="boardWriteForm" id="boardWriteForm">
-	<input id="seq" type="hidden" value="${seq}" >
+<form name="boardViewForm" id="boardViewForm">  <!-- 동적으로 action 속성(태그 > 속성) 추가 -->
+	<input id="seq" name="seq" type="hidden" value="${seq}" >
+	<input id="pg" name="pg" type="hidden" value="${pg}">
 	<input id="memId" type="hidden" value="${sessionScope.memId}" >
 	<h3>글 열람</h3>
 	<hr>
@@ -57,14 +58,32 @@
 	<input type="button" name="boardList" value="목록" onclick="location.href='/miniProject_MVC/board/boardList.do?pg=${pg}'">
 	
 	<span id="boardViewSpan">
-		<input type="button" value="글수정" onclick="location.href='/miniProject_MVC/board/boardUpdateForm.do?seq=${seq}&pg=${pg}'">
+		<!-- <input type="button" value="글수정" onclick="mode(1)">  onclick="location.href='/miniProject_MVC/board/boardUpdateForm.do?seq=${seq}&pg={pg}'"
+		<input type="button" value="글삭제" id="boardDeleteBtn"> -->
+		
+		<input type="button" value="글수정" id="boardUpdateBtn">
 		<input type="button" value="글삭제" id="boardDeleteBtn">
+		
 	</span>
 	</div>
 	
 	
 </form>
-<script src="../js/board.js"></script>
+<script type="text/javascript">
+/* 	function mode(num){
+		if(num == 1 ){//글 수정 -seq, pg
+			document.boardViewForm.method="get";
+			document.boardViewForm.action="/miniProject_MVC/board/boardUpdateForm.do";
+			document.boardViewForm.submit();
+		}else if(num == 2){//글 삭제 -seq
+			if(confirm("정말로 삭제하시겠습니까?")){
+				document.boardViewForm.method="post";
+				document.boardViewForm.action="/miniProject_MVC/board/boardDelete.do";
+				document.boardViewForm.submit();
+			}//if
+		}//else if
+	}//mode() */
+</script>
 <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../js/boardView.js"></script>
 </body>
