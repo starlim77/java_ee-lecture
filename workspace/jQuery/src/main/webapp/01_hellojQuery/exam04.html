@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 id="hello"></h1>
+<p id="text">안녕하세요 제이쿼리!!</p>
+<p id="text2"></p>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+$(function($){
+	$('#hello').html("Hello jQuery");
+	$('#hello').css('color','red');
+	
+	//$('#hello').html('<font color="red">Hello jQuery!!</font>');
+	
+	/* var p = $('#text');
+	alert(p.text()); // p 안에 있는 내용 꺼내옴
+	
+	p.text(p.text()+p.text()); */
+	
+	$('#text').text($('#text').text()+$('#text').text());
+	
+});
+</script>
+</body>
+</html>
