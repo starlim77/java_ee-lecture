@@ -76,9 +76,10 @@ local.properties
 .xml
 lib/
 강의자료/
-workspace/Servers/
+workspace/Servers
 workspace/.gitignore
 Workspace/test
+Workspace/tomcat
 mybatis-3.5.10/
 
 
