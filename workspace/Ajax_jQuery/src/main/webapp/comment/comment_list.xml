@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- dtd // 공백 허용 안됨 -->
+<comment>
+	<result>true</result>
+	<message></message>
+	<total_count>24</total_count>
+	<item>
+		<num>1</num>
+		<writer>홍길동</writer>
+		<content>Ajax로 구현하는 댓글 예제 입니다. 잘 되는지 볼까요?</content>
+		<datetime>2021-03-15 12:21:42</datetime>
+	</item>
+	<item>
+		<num>2</num>
+		<writer>라이언</writer>
+		<content>jQuery로 Ajax를 구현하면 쉽습니다</content>
+		<datetime>2021-03-15 12:29:11</datetime>
+	</item>
+	<item>
+		<num>3</num>
+		<writer>죠르디</writer>
+		<content>hello jquery~~~ hello ajax!!!</content>
+		<datetime>2021-03-16 09:02:42</datetime>
+	</item>
+</comment>
+
+<!-- 
+CDATA Section
+- <![CDATA[.....]]> 
+- CDATA Section 영역 안에서는 특수문자의 사용이 자유롭다.
+- 한글을 포함한 문자열 데이터에 사용할 수 있다.
+ -->
